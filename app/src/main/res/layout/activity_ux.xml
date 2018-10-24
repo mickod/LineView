@@ -1,0 +1,146 @@
+<!--
+   Copyright 2018 Google LLC.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.amodtech.ar.sceneform.amodapps.lineview.LineViewMainActivity">
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/blank_button_bottom_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_launcher" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/down_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/blank_button_bottom_right"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_baseline_arrow_downward_24px" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/blank_button_bottom_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/down_button"
+        android:layout_margin="5dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_launcher" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/right_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/blank_button_bottom_right"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_baseline_arrow_forward_24px" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/blank_button_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/down_button"
+        android:layout_toLeftOf="@+id/right_button"
+        android:layout_margin="5dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_launcher" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/left_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/down_button"
+        android:layout_toLeftOf="@+id/blank_button_center"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_xxx_arrow_back_24px" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/blank_button_top_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/right_button"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_launcher" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/up_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/right_button"
+        android:layout_toLeftOf="@id/blank_button_top_right"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_baseline_arrow_upward_24px" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/blank_button_top_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/blank_button_center"
+        android:layout_toLeftOf="@id/up_button"
+        android:layout_margin="5dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_launcher" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/forward_buttom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_baseline_call_received_24px" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/back_buttom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/forward_buttom"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_baseline_call_made_24px" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/delete_buttom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_baseline_delete_24px" />
+
+    <fragment
+        android:id="@+id/ux_fragment"
+        android:name="com.google.ar.sceneform.ux.ArFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+  </RelativeLayout>
+
+</FrameLayout>
