@@ -135,6 +135,15 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_baseline_delete_24px" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/draw_buttom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/delete_buttom"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_baseline_edit_24px" />
+
     <fragment
         android:id="@+id/ux_fragment"
         android:name="com.google.ar.sceneform.ux.ArFragment"

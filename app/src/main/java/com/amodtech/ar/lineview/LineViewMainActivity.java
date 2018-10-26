@@ -37,9 +37,13 @@ import com.google.ar.core.Session;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.HitTestResult;
 import com.google.ar.sceneform.Node;
+import com.google.ar.sceneform.math.Quaternion;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.Color;
+import com.google.ar.sceneform.rendering.MaterialFactory;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 //import com.google.ar.sceneform.samples.hellosceneform.R;
+import com.google.ar.sceneform.rendering.ShapeFactory;
 import com.google.ar.sceneform.ux.ArFragment;
 
 import java.util.ArrayList;
@@ -51,7 +55,7 @@ import java.util.List;
 public class LineViewMainActivity extends AppCompatActivity {
   private static final String TAG = LineViewMainActivity.class.getSimpleName();
   private static final double MIN_OPENGL_VERSION = 3.0;
-  private  static final int MAX_ANCHORS = 4;
+  private  static final int MAX_ANCHORS = 2;
 
   private ArFragment arFragment;
   private ModelRenderable andyRenderable;
@@ -220,6 +224,20 @@ public class LineViewMainActivity extends AppCompatActivity {
             }
         });
 
+        //Add a listener for the drawline button
+        FloatingActionButton drawLineButton = findViewById(R.id.draw_buttom);
+        drawLineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                //draw a line bteween the two Anchors, if there are exactly two anchros
+                Log.d(TAG,"drawing line");
+                if (numberOfAnchors == 2 ) {
+                    drawLine(anchorNodeList.get(0), anchorNodeList.get(1));
+                }
+            }
+        });
+
         //Add a listener for the delete button
         FloatingActionButton deleteButton = findViewById(R.id.delete_buttom);
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -353,5 +371,38 @@ public class LineViewMainActivity extends AppCompatActivity {
         newMarkAnchorNode.setParent(arFragment.getArSceneView().getScene());
 
         return newMarkAnchorNode;
+    }
+
+    private void drawLine(AnchorNode node1, AnchorNode node2) {
+      //Draw a line between two AnchorNodes (adapted from https://stackoverflow.com/a/52816504/334402)
+        Vector3 point1, point2;
+        point1 = node1.getWorldPosition();
+        point2 = node2.getWorldPosition();
+
+
+        //First, find the vector extending between the two points and define a look rotation
+        //in terms of this Vector.
+        final Vector3 difference = Vector3.subtract(point1, point2);
+        final Vector3 directionFromTopToBottom = difference.normalized();
+        final Quaternion rotationFromAToB =
+                Quaternion.lookRotation(directionFromTopToBottom, Vector3.up());
+        MaterialFactory.makeOpaqueWithColor(getApplicationContext(), new Color(0, 255, 244))
+                .thenAccept(
+                        material -> {
+                            /* Then, create a rectangular prism, using ShapeFactory.makeCube() and use the difference vector
+                                   to extend to the necessary length.  */
+                            ModelRenderable model = ShapeFactory.makeCube(
+                                    new Vector3(.01f, .01f, difference.length()),
+                                    Vector3.zero(), material);
+                            /* Last, set the world rotation of the node to the rotation calculated earlier and set the world position to
+                                   the midpoint between the given points . */
+                            Node nodeForLine = new Node();
+                            nodeForLine.setParent(anchorNode);
+                            nodeForLine.setRenderable(model);
+                            nodeForLine.setWorldPosition(Vector3.add(point1, point2).scaled(.5f));
+                            nodeForLine.setWorldRotation(rotationFromAToB);
+                        }
+                );
+
     }
 }
