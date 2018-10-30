@@ -50,7 +50,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * XXXXXXXX NEW HELLO SCENE FORM This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
+ * LineViewMainActivity - built on HelloSceneForm sample.
  */
 public class LineViewMainActivity extends AppCompatActivity {
   private static final String TAG = LineViewMainActivity.class.getSimpleName();
@@ -64,6 +64,7 @@ public class LineViewMainActivity extends AppCompatActivity {
   private List<AnchorNode> anchorNodeList = new ArrayList<>();
   private Integer numberOfAnchors = 0;
   private AnchorNode currentSelectedAnchorNode = null;
+  private Node nodeForLine;
 
 
     @Override
@@ -253,6 +254,9 @@ public class LineViewMainActivity extends AppCompatActivity {
                 }
                 removeAnchorNode(currentSelectedAnchorNode);
                 currentSelectedAnchorNode = null;
+
+                //Remove the line if it exists also
+                removeLine(nodeForLine);
             }
         });
     }
@@ -345,7 +349,17 @@ public class LineViewMainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(LineViewMainActivity.this, "Test Delete - markAnchorNode was null, the little £$%^...", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    private void removeLine(Node lineToRemove) {
+      //remove the line
+        Log.e(TAG, "removeLine");
+        if (lineToRemove != null) {
+            Log.e(TAG, "removeLine lineToRemove is not mull");
+            arFragment.getArSceneView().getScene().removeChild(lineToRemove);
+            lineToRemove.setParent(null);
+            lineToRemove = null;
+        }
     }
 
     private void addAnchorNode(AnchorNode nodeToAdd) {
@@ -359,6 +373,7 @@ public class LineViewMainActivity extends AppCompatActivity {
         //Move a renderable to a new pose
         if (markAnchorNodeToMove != null) {
             arFragment.getArSceneView().getScene().removeChild(markAnchorNodeToMove);
+            anchorNodeList.remove(markAnchorNodeToMove);
         } else {
             Log.d(TAG,"moveRenderable - markAnchorNode was null, the little £$%^...");
             return null;
@@ -369,12 +384,14 @@ public class LineViewMainActivity extends AppCompatActivity {
         AnchorNode newMarkAnchorNode = new AnchorNode(markAnchor);
         newMarkAnchorNode.setRenderable(andyRenderable);
         newMarkAnchorNode.setParent(arFragment.getArSceneView().getScene());
+        anchorNodeList.add(newMarkAnchorNode);
 
         return newMarkAnchorNode;
     }
 
     private void drawLine(AnchorNode node1, AnchorNode node2) {
       //Draw a line between two AnchorNodes (adapted from https://stackoverflow.com/a/52816504/334402)
+        Log.d(TAG,"drawLine");
         Vector3 point1, point2;
         point1 = node1.getWorldPosition();
         point2 = node2.getWorldPosition();
@@ -391,13 +408,15 @@ public class LineViewMainActivity extends AppCompatActivity {
                         material -> {
                             /* Then, create a rectangular prism, using ShapeFactory.makeCube() and use the difference vector
                                    to extend to the necessary length.  */
+                            Log.d(TAG,"drawLine insie .thenAccept");
                             ModelRenderable model = ShapeFactory.makeCube(
                                     new Vector3(.01f, .01f, difference.length()),
                                     Vector3.zero(), material);
                             /* Last, set the world rotation of the node to the rotation calculated earlier and set the world position to
                                    the midpoint between the given points . */
-                            Node nodeForLine = new Node();
-                            nodeForLine.setParent(anchorNode);
+                            Anchor lineAnchor = node2.getAnchor();
+                            nodeForLine = new Node();
+                            nodeForLine.setParent(node1);
                             nodeForLine.setRenderable(model);
                             nodeForLine.setWorldPosition(Vector3.add(point1, point2).scaled(.5f));
                             nodeForLine.setWorldRotation(rotationFromAToB);
