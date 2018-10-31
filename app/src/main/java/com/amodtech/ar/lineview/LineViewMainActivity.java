@@ -386,6 +386,9 @@ public class LineViewMainActivity extends AppCompatActivity {
         newMarkAnchorNode.setParent(arFragment.getArSceneView().getScene());
         anchorNodeList.add(newMarkAnchorNode);
 
+        //Delete the line if it is drawn
+        removeLine(nodeForLine);
+
         return newMarkAnchorNode;
     }
 
