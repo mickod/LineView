@@ -279,6 +279,11 @@ public class LineViewMainActivity extends AppCompatActivity {
 
             if (hitNode.getRenderable() == andyRenderable) {
                 Toast.makeText(LineViewMainActivity.this, "We've hit Andy!!", Toast.LENGTH_SHORT).show();
+                //First make the current (soon to be not current) selected node not highlighted
+                if (currentSelectedAnchorNode != null) {
+                    currentSelectedAnchorNode.setRenderable(andyRenderable);
+                }
+                //Now highlight the new current selected node
                 ModelRenderable highlightedAndyRenderable = andyRenderable.makeCopy();
                 highlightedAndyRenderable.getMaterial().setFloat3("baseColorTint", new Color(android.graphics.Color.rgb(255,0,0)));
                 hitNode.setRenderable(highlightedAndyRenderable);
