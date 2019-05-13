@@ -1,4 +1,4 @@
-include ':app'
+include ':lineview_main_app_module'
 
 // Uncomment to include the source version of the ux package in your project.
 //include ':sceneformux'
