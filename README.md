@@ -14,6 +14,6 @@ This application will allow you get a feel for the capabilities of your device a
 
 The app can either be built and installed from the repository here by importing it into Android Studio, or you can test it on your device directly from the Play store at the link here:
 
-https://play.google.com/store/apps/details?id=com.amodtech.lineview
+https://play.google.com/store/apps/details?id=com.amodtech.ar.lineview
 
 
