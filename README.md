@@ -1,5 +1,7 @@
 # LineView
 
+![Screenshot](/screenshots/Screenshot_20190513-145400.png)
+
 Line View is a simple Augmented Reality application that allows you place two ‘Andy’ Android characters in your phone’s view finder, and draw a line between them.
 
 Each ‘Andy’ can be moved left, right, up, down, forwards and backwards independently and a line can be added between them whenever the Andy’s are moved to a new position.
