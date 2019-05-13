@@ -249,7 +249,7 @@ public class LineViewMainActivity extends AppCompatActivity {
                 Log.d(TAG,"Deleteing anchor");
                 int currentAnchorIndex;
                 if (numberOfAnchors < 1 ) {
-                    Toast.makeText(LineViewMainActivity.this, "All marks deleted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LineViewMainActivity.this, "All nodes deleted", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 removeAnchorNode(currentSelectedAnchorNode);
@@ -274,11 +274,11 @@ public class LineViewMainActivity extends AppCompatActivity {
         // Check for touching a Sceneform node
         if (hitTestResult.getNode() != null) {
             Log.d(TAG,"handleOnTouch hitTestResult.getNode() != null");
-            Toast.makeText(LineViewMainActivity.this, "hitTestResult is not null: ", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(LineViewMainActivity.this, "hitTestResult is not null: ", Toast.LENGTH_SHORT).show();
             Node hitNode = hitTestResult.getNode();
 
             if (hitNode.getRenderable() == andyRenderable) {
-                Toast.makeText(LineViewMainActivity.this, "We've hit Andy!!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LineViewMainActivity.this, "We've hit Andy!!", Toast.LENGTH_SHORT).show();
                 //First make the current (soon to be not current) selected node not highlighted
                 if (currentSelectedAnchorNode != null) {
                     currentSelectedAnchorNode.setRenderable(andyRenderable);
@@ -350,9 +350,9 @@ public class LineViewMainActivity extends AppCompatActivity {
             nodeToremove.setParent(null);
             nodeToremove = null;
             numberOfAnchors--;
-            Toast.makeText(LineViewMainActivity.this, "Test Delete - markAnchorNode removed", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(LineViewMainActivity.this, "Test Delete - markAnchorNode removed", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(LineViewMainActivity.this, "Test Delete - markAnchorNode was null, the little £$%^...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LineViewMainActivity.this, "Delete - no node selected! Touch a node to select it.", Toast.LENGTH_SHORT).show();
         }
     }
 

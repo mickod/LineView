@@ -31,7 +31,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
         android:visibility="invisible"
-        android:src="@drawable/ic_launcher" />
+        android:src="@mipmap/ic_launcher" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/down_button"
@@ -50,7 +50,7 @@
         android:layout_toLeftOf="@+id/down_button"
         android:layout_margin="5dp"
         android:visibility="invisible"
-        android:src="@drawable/ic_launcher" />
+        android:src="@mipmap/ic_launcher" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/right_button"
@@ -69,7 +69,7 @@
         android:layout_toLeftOf="@+id/right_button"
         android:layout_margin="5dp"
         android:visibility="invisible"
-        android:src="@drawable/ic_launcher" />
+        android:src="@mipmap/ic_launcher" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/left_button"
@@ -88,7 +88,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
         android:visibility="invisible"
-        android:src="@drawable/ic_launcher" />
+        android:src="@mipmap/ic_launcher" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/up_button"
@@ -107,7 +107,7 @@
         android:layout_toLeftOf="@id/up_button"
         android:layout_margin="5dp"
         android:visibility="invisible"
-        android:src="@drawable/ic_launcher" />
+        android:src="@mipmap/ic_launcher" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/forward_buttom"
